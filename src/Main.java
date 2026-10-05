@@ -1,10 +1,13 @@
-// Repositorio:https://github.com/lopezperezjuancarlos/PracticaParadigmas
+// Repositorio: https://github.com/lopezperezjuancarlos/PracticaParadigmas
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Main {
+
+    // Estructura simple para guardar los datos de un alumno
+    record Alumno(String nombre, int edad, String grupo, double promedio) {}
 
     // Lista de números dada en la práctica
     static List<Integer> numeros = List.of(10, 5, 8, 3, 15, 20, 7, 12, 4, 9);
@@ -28,6 +31,9 @@ public class Main {
         ej13();
         ej14();
         ej15();
+
+        System.out.println("\n===== ACTIVIDAD DE INTEGRACIÓN =====");
+        integracion();
     }
 
     // ---------- PROGRAMACIÓN ESTRUCTURADA (ciclos paso a paso) ----------
@@ -160,5 +166,23 @@ public class Main {
                 .sorted()
                 .collect(Collectors.toList());
         System.out.println("Ejercicio 15: impares ordenados -> " + resultado);
+    }
+
+    // ---------- ACTIVIDAD DE INTEGRACIÓN ----------
+
+    // Alumnos con promedio >= 8 usando Stream
+    static void integracion() {
+        List<Alumno> alumnos = List.of(
+                new Alumno("Ana", 15, "1A", 8.5),
+                new Alumno("Luis", 16, "1A", 7.8),
+                new Alumno("Marta", 15, "1B", 9.2),
+                new Alumno("Pedro", 17, "2A", 8.9),
+                new Alumno("Sofía", 16, "2A", 9.5),
+                new Alumno("Juan", 17, "2B", 7.5));
+
+        System.out.println("Alumnos con promedio >= 8:");
+        alumnos.stream()
+                .filter(a -> a.promedio() >= 8)
+                .forEach(a -> System.out.println(a.nombre() + " - " + a.promedio()));
     }
 }
